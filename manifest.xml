@@ -1,0 +1,13 @@
+<Application ts="1493453326772" uri="https://github.com/rmorales-iaa/xelgs/" launch="com.xelgs.Main">
+<lib file="xelgs-assembly-0.1.0-SNAPSHOT.jar" checksum="1855949108" size="16726446"/>
+<lib file="manifest.xml" checksum="67d67eed" size="721"/>
+<lib file="input/log4j2.xml" checksum="196133667" size="2154"/>
+<updateText>Updating xelgs to the last version...</updateText>
+<updateLabelStyle>-fx-font-weight: bold;</updateLabelStyle>
+<progressBarStyle>-fx-pref-width: 200;</progressBarStyle>
+<wrapperStyle>-fx-spacing: 10; -fx-padding: 25;</wrapperStyle>
+<parameters>--myOption=myValue --myOtherOption=myOtherValue</parameters>
+<cacheDir>USERLIB/FxlDemo</cacheDir>
+<acceptDowngrade>false</acceptDowngrade>
+<lingeringUpdateScreen>false</lingeringUpdateScreen>
+</Application>
