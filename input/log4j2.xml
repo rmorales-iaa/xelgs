@@ -1,1 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--_________________________________________________________________________-->
 
+<Configuration status="WARN">
+    <!--_________________________________________________________________________-->
+    <Properties>
+        <!-- Coloring: https://www.baeldung.com/log4j2-appenders-layouts-filters -->
+        <Property name="CONSOLE_MESSAGE_PATTERN">%style{[%d{ISO8601}{UTC}]}{yellow} {%-5level} [%t] {%msg}%n</Property>
+        <Property name="ROLLING_FILE_MESSAGE_PATTERN">[%d{ISO8601}{UTC}] [%-5level] [%t] {%msg}%n</Property>
+
+
+        <Property name="OUTPUT_FILE_DIR">output/logger</Property>
+        <Property name="OUTPUT_FILE_NAME_DATE">yyyy'y_'MM'm_'dd'd_'HH'h_'mm'm_'ss's_'SSS'ms'</Property>
+        
+    </Properties>
+
+    <!--_________________________________________________________________________-->
+    <!-- https://logging.apache.org/log4j/2.x/manual/appenders.html -->
+    <Appenders>
+
+        <Console name="LogToConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="${CONSOLE_MESSAGE_PATTERN}"/>
+        </Console>
+
+
+       <RollingFile 
+          name="LogToRollingFile" 
+          fileName="${OUTPUT_FILE_DIR}/${date:${OUTPUT_FILE_NAME_DATE}}.log" 
+          filePattern="${OUTPUT_FILE_DIR}/logger_%d{yyyy-MM-dd}-%i.gz"
+          append="false">
+
+            <PatternLayout pattern="${ROLLING_FILE_MESSAGE_PATTERN}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <TimeBasedTriggeringPolicy interval="1" modulate="true" />
+            </Policies>
+
+        </RollingFile>
+
+        <Async name="Async">
+          <AppenderRef ref="LogToRollingFile"/>
+        </Async>
+
+    </Appenders>
+    <!--_________________________________________________________________________-->
+    <Loggers>
+        <Root level="warn" additivity="false">
+            <AppenderRef ref="LogToConsole" />
+            <AppenderRef ref="LogToRollingFile" />
+        </Root>
+    </Loggers>
+    <!--_________________________________________________________________________-->
+
+</Configuration>
+
+<!--_________________________________________________________________________-->
